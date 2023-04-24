@@ -1,5 +1,5 @@
 import { Service } from "@sap/cds/apis/services";
-import { Lecture, Room, AlldayEvent } from "./entities";
+import { Lecture, Room, AlldayEvent } from "./@types/LectureService/index";
 
 export = (srv: Service) => {
 
@@ -7,7 +7,7 @@ export = (srv: Service) => {
 
     srv.before('CREATE', 'Lectures', async (req) => {
         const data = req.data as Lecture,
-            { starttime, endtime, room_ID } = data;
+            { starttime, endtime, room: {ID: room_ID} } = data;
 
         const start = new Date(starttime).toISOString(),
             end = new Date(endtime).toISOString();
@@ -28,12 +28,12 @@ export = (srv: Service) => {
 
     srv.before('UPDATE', 'Lectures', async (req) => {
         const data = req.data as Lecture,
-            { ID, starttime, endtime, room_ID } = data;
+            { ID, starttime, endtime, room: {ID: room_ID} } = data;
 
         const lecture = await srv.read(Lectures).where({ ID: ID }).limit(1) as Lecture[];
         const start = starttime ? new Date(starttime).toISOString() : lecture[0].starttime,
             end = endtime ? new Date(endtime).toISOString() : lecture[0].endtime,
-            roomID = room_ID ? room_ID : lecture[0].room_ID;
+            roomID = room_ID ? room_ID : lecture[0].room.ID;
 
         let lectures = [];
         lectures = await srv.read(Lectures).where({
@@ -65,7 +65,7 @@ export = (srv: Service) => {
                 starttime: { between: startDate.toISOString(), and: endDate.toISOString() },
                 or: { endtime: { between: startDate.toISOString(), and: endDate.toISOString() } }
             }).columns('room_ID') as Lecture[];
-        const bookedRoomIDs = overlappingLectures.map(r => r.room_ID);
+        const bookedRoomIDs = overlappingLectures.map(r => r.room.ID);
 
         let rooms;
         if (bookedRoomIDs.length >= 1) {

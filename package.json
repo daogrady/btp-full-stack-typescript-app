@@ -13,6 +13,7 @@
     "passport": "^0.6.0"
   },
   "devDependencies": {
+    "@sap/cds-dts-generator": "^0.1.1",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.8",
     "@sap/ux-specification": "^1.102.15",
     "@sapui5/ts-types": "^1.108.5",

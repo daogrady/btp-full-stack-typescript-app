@@ -3,6 +3,11 @@ using {lectureschedule as my} from '../db/schema';
 @path : 'service/lectureSchedule'
 service LectureService {
 
+    entity AlldayEvent {
+        reqSeats: Integer;
+        date: Date;
+    }
+
     entity Lectures @(restrict : [
         {
             grant : ['READ'],
