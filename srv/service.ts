@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Service } from "@sap/cds/apis/services";
-import { Lecture, Room, AlldayEvent } from "./@types/LectureService/index";
+import { Lecture, Room, AlldayEvent } from "./@types/LectureService/";
 
 export = (srv: Service) => {
 
@@ -26,9 +29,8 @@ export = (srv: Service) => {
             return req.error(400, "SELECTED_ROOM_NOT_AVAILABLE")
     })
 
-    srv.before('UPDATE', 'Lectures', async (req) => {
-        const data = req.data as Lecture,
-            { ID, starttime, endtime, room: {ID: room_ID} } = data;
+    srv.before('UPDATE', Lecture, async (req) => {
+        const { ID, starttime, endtime, room: {ID: room_ID} } = req.data;
 
         const lecture = await srv.read(Lectures).where({ ID: ID }).limit(1) as Lecture[];
         const start = starttime ? new Date(starttime).toISOString() : lecture[0].starttime,

@@ -1,11 +1,11 @@
 // This is an automatically generated file. Please do not change its contents manually!
 const cds = require('@sap/cds')
-const cson = cds.entities('lectureschedule')
-module.exports.Room = cson.Rooms
-module.exports.Rooms = cson.Rooms
-module.exports.Cours = cson.Courses
-module.exports.Courses = cson.Courses
-module.exports.Professor = cson.Professors
-module.exports.Professors = cson.Professors
-module.exports.Lecture = cson.Lectures
-module.exports.Lectures = cson.Lectures
+const csn = cds.entities('lectureschedule')
+module.exports.Room = csn.Rooms
+module.exports.Rooms = csn.Rooms
+module.exports.Cours = csn.Courses
+module.exports.Courses = csn.Courses
+module.exports.Professor = csn.Professors
+module.exports.Professors = csn.Professors
+module.exports.Lecture = csn.Lectures
+module.exports.Lectures = csn.Lectures

@@ -1,46 +1,43 @@
 // This is an automatically generated file. Please do not change its contents manually!
 import * as __ from './../../_';
-
 export type Locale = string;
-
-
 // the following represents the CDS aspect 'CodeList'
-export function CodeList<TBase extends new (...args: any[]) => {}>(Base: TBase) {
+export function CodeList_fn<TBase extends new (...args: any[]) => any>(Base: TBase) {
   return class CodeListAspect extends Base {
-    name: string;
-    descr: string;
+        name ?: string;
+        descr ?: string;
   };
 }
-const CodeListXtended = CodeList(__.Entity)
-export type CodeList = InstanceType<typeof CodeListXtended>
+export const CodeList = CodeList_fn(__.Entity)
+export type CodeList = InstanceType<typeof CodeList>
 
 // the following represents the CDS aspect 'TextsAspect'
-export function TextsAspect<TBase extends new (...args: any[]) => {}>(Base: TBase) {
+export function TextsAspect_fn<TBase extends new (...args: any[]) => any>(Base: TBase) {
   return class TextsAspectAspect extends Base {
     /**
     * Type for a language code
     */
-    locale: Locale;
+        locale ?: Locale;
   };
 }
-const TextsAspectXtended = TextsAspect(__.Entity)
-export type TextsAspect = InstanceType<typeof TextsAspectXtended>
+export const TextsAspect = TextsAspect_fn(__.Entity)
+export type TextsAspect = InstanceType<typeof TextsAspect>
 
 /**
 * Code list for languages
 * 
 * See https://cap.cloud.sap/docs/cds/common#entity-sapcommonlanguages
 */
-export function Language<TBase extends new (...args: any[]) => {}>(Base: TBase) {
+export function Language_fn<TBase extends new (...args: any[]) => any>(Base: TBase) {
   return class LanguageAspect extends Base {
     /**
     * Type for a language code
     */
-    code: Locale;
+        code ?: Locale;
   };
 }
-const LanguageXtended = CodeList(Language(__.Entity))
-export type Language = InstanceType<typeof LanguageXtended>
+export const Language = CodeList_fn(Language_fn(__.Entity))
+export type Language = InstanceType<typeof Language>
 
 export class Languages extends Array<Language> {
 }
@@ -50,13 +47,13 @@ export class Languages extends Array<Language> {
 * 
 * See https://cap.cloud.sap/docs/cds/common#entity-sapcommoncountries
 */
-export function Country<TBase extends new (...args: any[]) => {}>(Base: TBase) {
+export function Country_fn<TBase extends new (...args: any[]) => any>(Base: TBase) {
   return class CountryAspect extends Base {
-    code: string;
+        code ?: string;
   };
 }
-const CountryXtended = CodeList(Country(__.Entity))
-export type Country = InstanceType<typeof CountryXtended>
+export const Country = CodeList_fn(Country_fn(__.Entity))
+export type Country = InstanceType<typeof Country>
 
 export class Countries extends Array<Country> {
 }
@@ -66,15 +63,14 @@ export class Countries extends Array<Country> {
 * 
 * See https://cap.cloud.sap/docs/cds/common#entity-sapcommoncurrencies
 */
-export function Currency<TBase extends new (...args: any[]) => {}>(Base: TBase) {
+export function Currency_fn<TBase extends new (...args: any[]) => any>(Base: TBase) {
   return class CurrencyAspect extends Base {
-    code: string;
-    symbol: string;
+        code ?: string;
+        symbol ?: string;
   };
 }
-const CurrencyXtended = CodeList(Currency(__.Entity))
-export type Currency = InstanceType<typeof CurrencyXtended>
+export const Currency = CodeList_fn(Currency_fn(__.Entity))
+export type Currency = InstanceType<typeof Currency>
 
 export class Currencies extends Array<Currency> {
 }
-
