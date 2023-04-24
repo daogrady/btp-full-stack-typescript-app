@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Service } from "@sap/cds/apis/services";
 import { Lecture, Room, AlldayEvent } from "./@types/LectureService/";
 
@@ -8,8 +5,8 @@ export = (srv: Service) => {
 
     const { Rooms, Lectures } = srv.entities;
 
-    srv.before('CREATE', 'Lectures', async (req) => {
-        const data = req.data as Lecture,
+    srv.before('CREATE', Lecture, async (req) => {
+        const data = req.data,
             { starttime, endtime, room: {ID: room_ID} } = data;
 
         const start = new Date(starttime).toISOString(),
@@ -95,8 +92,7 @@ export = (srv: Service) => {
         }
     })
 
-    srv.after('READ', 'Lectures', (each) => {
-        const lecture = each as Lecture;
+    srv.after('READ', Lecture, (lecture) => {
         if (lecture.starttime && lecture.endtime) {
             const start = new Date(lecture.starttime),
                 end = new Date(lecture.endtime);
@@ -106,8 +102,7 @@ export = (srv: Service) => {
         }
     })
 
-    srv.after('READ', 'Rooms', (each) => {
-        const room = each as Room;
+    srv.after('READ', Room, (room) => {
         if (room.lectures) {
             for (const lecture of room.lectures) {
                 const start = new Date(lecture.starttime),
